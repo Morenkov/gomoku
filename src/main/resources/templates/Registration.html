@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <style>
+        body {
+            background: url(gmk.jpg);
+            background-size: 100%;
+            text-align: center;
+        }
+        label {
+            float: center;
+            padding-right: 10px;
+        }
+
+        .field {
+            clear: both;
+            text-align: center;
+            line-height: 25px;
+        }
+
+        .main {
+            float: center;
+        }
+    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Регистрация</title>
+</head>
+<body>
+<div class="main">
+    <div class="field">
+        <h1>Регистрация</h1>
+        <form method="post" action="" class="login">
+            <p>
+                <label for="login">Имя:</label>
+                <input type="text" name="name" id="nameuser">
+            </p>
+            <p>
+                <label for="login">Фамилия:</label>
+                <input type="text" name="secname" id="secnameuser">
+            </p>
+            <p>
+                <label for="login">Логин:</label>
+                <input type="text" name="login" id="login">
+            </p>
+
+            <p>
+                <label for="password">Пароль:</label>
+                <input type="password" name="password" id="password">
+            </p>
+
+            <p>
+                <label for="password">E-mail:</label>
+                <input type="text" name="e-mail" id="e-mail">
+            </p>
+
+            <p class="login-submit">
+                <button type="submit" class="login-button">Зарегистрироваться</button>
+            </p>
+            </p>
+        </form>
+    </div>
+</div>
+</body>
+</html>

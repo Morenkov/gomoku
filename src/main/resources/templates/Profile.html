@@ -1,0 +1,119 @@
+<html>
+<head lang="ru">
+    <head>
+        <style>
+            body {
+                background: url(gmk1.jpg) no-repeat;
+                background-size: cover;
+                font-size: 11pt;
+            }
+        </style>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta name="Author" content="Markus_13">
+        <meta name="keywords"
+              content="Gomoku, g0m0ku, Гомоку, г0м0ку, ujvjre, пщьщлг, gmku, гмку, GOMKU, Gmoku, ГОМКУ, Гмоку, гомок, gomok">
+        <meta name="description" content="M13#gomoku - Спокойное место для игры в Гомоку.">
+        <link rel="image_src" href="http://markus13.name/gomoku/a/Gomoku.png">
+        <link rel="stylesheet" type="text/css" href="/gomoku/a/jquery.fancybox.css">
+        <link rel="stylesheet" type="text/css" href="/gomoku/a/style.php">
+        <script type="text/javascript">
+            var lng = 1;
+        </script>
+        <script type="text/javascript" src="/gomoku/a/jquery-1.8.3.min.js"></script>
+        <script type="text/javascript" src="/gomoku/a/jquery.fancybox1.js"></script>
+        <script type="text/javascript" src="/gomoku/a/scr.js"></script>
+        <noscript>
+            <style type="text/css">
+                input[type="file"] {
+                    display: inline-block !important;
+                }
+            </style>
+        </noscript>
+        <link rel="shortcut icon" type="image/gif" href="/gomoku/favicon.ico">
+        <link rel="icon" href="/gomoku/favicon.png">
+        <title>Аккаунт</title></head>
+<body>
+<div id="cont">
+    <div id="innr">
+        <h2>Аккаунт "<b>Имя пользователя</b>"</h2><br>
+        <div id="hd">
+            <script type="text/javascript" src="/gomoku/a/me.js"></script>
+            <p class="msg"></p>
+            <table class="twh">
+                <tr>
+                    <td style="width:50%; vertical-align:top;">
+                        <table id="nfo">
+                            <tr class="atr">
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="dvd"><br>&nbsp; Е-мейл: <b>-</b></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="dvd">&nbsp; Рейтинг: <b>-</b></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="dvd">&nbsp; Последняя активность:</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>&nbsp; <b>-</b></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="dvd">&nbsp; Сыграно игр: <b>-</b></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="dvd">&nbsp; Побед: <b>-</b></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td class="dvd">&nbsp; Поражений: <b>-</b></td>
+                            </tr>
+                        </table>
+                        <br></td>
+                    <td style="width:50%;">
+                        <form id="frm1" class="auth par" enctype="multipart/form-data" method="post"
+                              action="/gomoku/me/">
+
+                        </form>
+                        <br>
+                        <form id="frm2" class="auth par" method="post" action="/gomoku/me/">
+                            <table>
+                                <tr>
+                                    <td>Текущий Пароль:</td>
+                                    <td><input type="password" name="p" value="" maxlength="12"></td>
+                                </tr>
+                                <tr>
+                                    <td>Новый Пароль:</td>
+                                    <td><input type="password" name="np" value="" maxlength="12"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><input type="submit" name="bt" value="Поменять пароль"></td>
+                                </tr>
+                            </table>
+                        </form>
+                        <br></td>
+                </tr>
+            </table>
+        </div>
+        <hr>
+        <div class="tit bot txc">
+            <table class="wrp">
+                <tr>
+                    <td class="r"><a href="/gomoku/play/" class="menuw">Играть</a></td>
+                    <td class=""><a href="/gomoku/champs/" class="menuw">Друзья</a></td>
+                    <td class=""><a class="menua">Аккаунт</a></td>
+                    <td class=""><a href="/gomoku/logout/?u=/gomoku/me/" class="menuw">Выйти</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
