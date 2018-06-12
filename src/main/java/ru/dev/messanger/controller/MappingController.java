@@ -37,6 +37,11 @@ public class MappingController {
         return "Profile";
     }
 
+    @GetMapping("/game")
+    public String game() {
+        return "GamePage";
+    }
+
     @GetMapping("/signup")
     public String signup() {
         return "Registration";

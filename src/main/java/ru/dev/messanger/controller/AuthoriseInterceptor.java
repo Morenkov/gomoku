@@ -34,7 +34,7 @@ public class AuthoriseInterceptor implements HandlerInterceptor {
     }
     private Boolean isAllowed(String url){
         if (url.equals("/")) return true;
-        String[] allowed = {"/enter", "/logout" ,"/signup", "/signin", "/css/", "/fonts/", "/img/", "/js/", "/psd/", "/activate/", "/setUser", "/loginAlreadyExists", "/authorization", "/main"};
+        String[] allowed = {"/enter", "/logout" ,"/signup", "/signin", "/css/", "/fonts/", "/img/", "/js/", "/psd/", "/activate/", "/setUser", "/loginAlreadyExists", "/authorization", "/main", "/game"};
         for (String str: allowed) {
             if (url.indexOf(str) == 0){
                 return true;
