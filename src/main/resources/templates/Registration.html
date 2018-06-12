@@ -1,30 +1,10 @@
 ﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
-    <style>
-        body {
-            background: url(gmk.jpg);
-            background-size: 100%;
-            text-align: center;
-        }
-        label {
-            float: center;
-            padding-right: 10px;
-        }
-
-        .field {
-            clear: both;
-            text-align: center;
-            line-height: 25px;
-        }
-
-        .main {
-            float: center;
-        }
-    </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Регистрация</title>
+    <link type="text/css" rel="stylesheet" href="css/reg.css">
 </head>
 <body>
 <div class="main">
@@ -32,12 +12,12 @@
         <h1>Регистрация</h1>
         <form method="post" action="" class="login">
             <p>
-                <label for="login">Имя:</label>
-                <input type="text" name="name" id="nameuser">
+                <label for="firstName">Имя:</label>
+                <input type="text" name="firstName" id="firstName">
             </p>
             <p>
-                <label for="login">Фамилия:</label>
-                <input type="text" name="secname" id="secnameuser">
+                <label for="lastName">Фамилия:</label>
+                <input type="text" name="lastName" id="lastName">
             </p>
             <p>
                 <label for="login">Логин:</label>
@@ -50,8 +30,8 @@
             </p>
 
             <p>
-                <label for="password">E-mail:</label>
-                <input type="text" name="e-mail" id="e-mail">
+                <label for="email">E-mail:</label>
+                <input type="text" name="e-mail" id="email">
             </p>
 
             <p class="login-submit">

@@ -1,0 +1,23 @@
+body {
+    background: url(img/gmk.jpg) no-repeat;
+    background-size: cover;
+}
+
+body {
+    text-align: center;
+}
+
+label {
+    float: center;
+    padding-right: 10px;
+}
+
+.field {
+    clear: both;
+    text-align: center;
+    line-height: 25px;
+}
+
+.main {
+    float: center;
+}

@@ -20,22 +20,22 @@ public class RESTController {
         this.bll = bll;
     }
 
-    @RequestMapping(value = "/authorization", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/authorization", method = RequestMethod.POST, produces = "application/json")
     public String authorization(@RequestParam String login, @RequestParam String password) {
         return bll.authorization(login, password);
     }
 
-    @RequestMapping(value = "/emailAlreadyExists", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/emailAlreadyExists", method = RequestMethod.POST, produces = "application/json")
     public String emailAlreadyExists(@RequestParam String email) {
         return bll.emailAlreadyExists(email);
     }
 
-    @RequestMapping(value = "/loginAlreadyExists", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/loginAlreadyExists", method = RequestMethod.POST, produces = "application/json")
     public String loginAlreadyExists(@RequestParam String login) {
         return bll.loginAlreadyExists(login);
     }
 
-    @RequestMapping(value = "/setUser", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/setUser", method = RequestMethod.POST, produces = "application/json")
     public String setUser(
             @RequestParam String email,
             @RequestParam String login,

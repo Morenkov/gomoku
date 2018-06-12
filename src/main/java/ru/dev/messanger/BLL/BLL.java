@@ -94,7 +94,7 @@ public class BLL {
 
         UserDTO user = Database.INSTANCE.authorization(login, Encoder.hash256(password));
         if (user == null) {
-            return new Gson().toJson("not activated");
+            return new Gson().toJson("Incorrect password");
         }
         Token tkn = new Token();
         TUser tuser = new TUser(user, tkn.getStringToken());
