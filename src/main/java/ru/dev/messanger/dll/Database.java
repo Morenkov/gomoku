@@ -221,7 +221,7 @@ public class Database implements AbstractDal {
 
     @Override
     public Iterable<UserDTO> getFriends(int id) {
-        List<UserDTO> users = null;
+        List<UserDTO> users = new ArrayList<>();;
         try (Connection connection = DriverManager.getConnection(properties.getProperty("url"), properties)) {
             String SqlQuery = "SELECT users.id, email, login, users.name, surname, `won-games`, `lost-games` " +
                     "FROM friends LEFT JOIN users ON users.id=friends.`second-id` " +
@@ -229,7 +229,6 @@ public class Database implements AbstractDal {
             try (PreparedStatement st = connection.prepareStatement(SqlQuery)) {
                 st.executeQuery();
                 try (ResultSet rs = st.getResultSet()) {
-                    users = new ArrayList<>();
                     while (rs.next()) {
                         users.add(getUser(rs));
                     }
@@ -242,7 +241,6 @@ public class Database implements AbstractDal {
             try (PreparedStatement st = connection.prepareStatement(SqlQuery)) {
                 st.executeQuery();
                 try (ResultSet rs = st.getResultSet()) {
-                    users = new ArrayList<>();
                     while (rs.next()) {
                         users.add(getUser(rs));
                     }

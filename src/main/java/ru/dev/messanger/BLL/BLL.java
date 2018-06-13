@@ -30,7 +30,7 @@ public class BLL {
     }
 
     public Boolean checkToken(String token) {
-        if ((userToken.size() == 0) || (token.isEmpty()) || (token == null)) { // TODO: Can be removed (presents for better understanding)
+        if ((token == null) || (userToken.size() == 0) || (token.isEmpty())) { // TODO: Can be removed (presents for better understanding)
             return false;
         }
         Token storedToken = getToken(token);
@@ -132,6 +132,10 @@ public class BLL {
 
     public String getUser(int id) {
         return new Gson().toJson(Database.INSTANCE.getUser(id));
+    }
+
+    public String getFriends(int id) {
+        return new Gson().toJson(Database.INSTANCE.getFriends(id));
     }
 
     public String updateUser(

@@ -40,11 +40,11 @@ public class RESTController {
             @RequestParam String email,
             @RequestParam String login,
             @RequestParam String password,
-            @RequestParam String first_name,
-            @RequestParam String last_name,
+            @RequestParam String firstName,
+            @RequestParam String lastName,
             @RequestParam int wonGames,
             @RequestParam int lostGames) {
-        return bll.setUser(email, login, password, first_name, last_name, wonGames, lostGames);
+        return bll.setUser(email, login, password, firstName, lastName, wonGames, lostGames);
     }
 
     @RequestMapping(value = "/getUser", method = RequestMethod.POST, produces = "application/json")
@@ -52,16 +52,21 @@ public class RESTController {
         return bll.getUser(id);
     }
 
-    @RequestMapping(value = "/updateUser", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/getFriends", method = RequestMethod.POST, produces = "application/json")
+    public String getFriends(@RequestParam int id) {
+        return bll.getFriends(id);
+    }
+
+    @RequestMapping(value = "/updateUser", method = RequestMethod.POST, produces = "application/json")
     public String updateUser(
             @RequestParam int id,
             @RequestParam String password,
-            @RequestParam String first_name,
-            @RequestParam String last_name,
+            @RequestParam String firstName,
+            @RequestParam String lastName,
             @RequestParam int wonGames,
             @RequestParam int lostGames
     ) {
-        return bll.updateUser(id, password, first_name, last_name, wonGames, lostGames);
+        return bll.updateUser(id, password, firstName, lastName, wonGames, lostGames);
     }
 
     @RequestMapping(value = "/searchUsers", method = RequestMethod.POST, produces = "application/json")
