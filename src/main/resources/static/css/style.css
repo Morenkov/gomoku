@@ -9,7 +9,7 @@ body{
 .scoreboard{
     width:601px;
     text-align: center;
-    margin:0 auto 15px;
+    margin: 50px auto 15px;
 }
 .scoreboard input{
     padding: 5px 7px;

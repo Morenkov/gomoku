@@ -24,7 +24,7 @@ public class MappingController {
 
     @GetMapping("/signin")
     public String signin() {
-        return "Authorization";
+        return "Signin";
     }
 
     @PostMapping("/enter")
@@ -34,7 +34,7 @@ public class MappingController {
 
     @GetMapping("/main")
     public String main() {
-        return "Profile";
+        return "account";
     }
 
     @GetMapping("/game")
@@ -44,7 +44,7 @@ public class MappingController {
 
     @GetMapping("/signup")
     public String signup() {
-        return "Registration";
+        return "Signup";
     }
 
     @PostMapping("/logout")

@@ -9,8 +9,26 @@ var mainApp = (function () {
             method: "POST",
             data: {id: me.id},
             success: function (answer) {
+                var i = 0,
+                    $list = $('.friends'),
+                    $friends = null,
+                    html = '';
                 console.log(answer);
                 friends = answer;
+
+                for (i = 0; i < friends.length; i += 1) {
+                    html += '<li class="list-group-item friend">' + friends[i].firstName + ' ' + friends[i].lastName + '</li>';
+                }
+
+                $list.html(html);
+                $friends = $('.friend');
+
+                for (i = 0; i < $friends.length; i += 1) {
+                    $friends[i].current = i;
+                    $friends[i].addEventListener('click', function () {
+                        showProfile(friends[this.current]);
+                    });
+                }
             },
             error: function (error) {
                 console.log(error);
@@ -19,14 +37,22 @@ var mainApp = (function () {
         });
     }
 
-    function showProfile() {
-        $('.email').html(me.email);
-        $('.total-games').html(me.wonGames + me.lostGames);
-        $('.win').html(me.wonGames);
-        $('.lose').html(me.lostGames);
+    function showProfile(user) {
+        if (user.id === me.id){
+            $('.panel-heading:eq(0)').html('Мой аккаунт');
+        } else {
+            $('.panel-heading:eq(0)').html('Аккаунт друга');
+        }
 
-        if (me.lostGames) {
-            $('.reit').html(Math.floor(me.wonGames / me.lostGames * 100));
+        $('.name').html(user.firstName);
+        $('.surname').html(user.lastName);
+        $('.email').html(user.email);
+        $('.total-games').html(user.wonGames + user.lostGames);
+        $('.win').html(user.wonGames);
+        $('.lose').html(user.lostGames);
+
+        if (user.lostGames) {
+            $('.reit').html(Math.floor(user.wonGames / user.lostGames * 100));
         } else {
             $('.reit').html(1);
         }
@@ -78,7 +104,7 @@ var mainApp = (function () {
     }
 
     function initialize() {
-        $('.logout').on('click', function (e) {
+        $('.logout').on('click', function () {
             $.ajax({
                 url: "/logout",
                 method: "POST",
@@ -88,7 +114,12 @@ var mainApp = (function () {
                 }
             });
         });
-        showProfile();
+
+        $('.my-account').on('click', function () {
+            showProfile(me);
+        });
+
+        showProfile(me);
         changePassword();
         getFriends();
     }
