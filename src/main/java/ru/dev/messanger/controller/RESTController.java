@@ -73,4 +73,37 @@ public class RESTController {
     public String searchUsers(@RequestParam String searchQuery) {
         return bll.searchUsers(searchQuery);
     }
+
+    @RequestMapping(value = "/getFreeGames", method = RequestMethod.POST, produces = "application/json")
+    public String getFreeGames() {
+        return bll.getFreeGames();
+    }
+
+    @RequestMapping(value = "/getGame", method = RequestMethod.POST, produces = "application/json")
+    public String getGame(@RequestParam int id) {
+        return bll.getGame(id);
+    }
+
+    @RequestMapping(value = "/getGame", method = RequestMethod.POST, produces = "application/json")
+    public String createGame(@RequestParam int userId) {
+        return bll.createGame(userId);
+    }
+
+    @RequestMapping(value = "/joinGame", method = RequestMethod.POST, produces = "application/json")
+    public String joinGame(@RequestParam int userId, @RequestParam int gameId) {
+        return bll.joinGame(userId, gameId);
+    }
+
+    @RequestMapping(value = "/changeGameState", method = RequestMethod.POST, produces = "application/json")
+    public String changeGameState(@RequestParam int id, @RequestParam String gameState) {
+        return bll.changeGameState(id, gameState);
+    }
+
+    @RequestMapping(value = "/addFriend", method = RequestMethod.POST, produces = "application/json")
+    public String addFriend(
+            @RequestParam int meId,
+            @RequestParam int friendId
+    ) {
+        return bll.setFriend(meId, friendId);
+    }
 }

@@ -117,6 +117,54 @@ public class Database implements AbstractDal {
     }
 
     @Override
+    public Boolean createGame(int userId) {
+        try (Connection connection = DriverManager.getConnection(properties.getProperty("url"), properties)) {
+            String SqlQuery = "INSERT INTO games (`first-player-id`) VALUES ('" + userId + "');";
+            try (PreparedStatement st = connection.prepareStatement(SqlQuery)) {
+                st.executeQuery();
+            } catch (SQLException e) {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Connection problem.");
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    @Override
+    public Boolean joinGame(int userId, int gameId) {
+        try (Connection connection = DriverManager.getConnection(properties.getProperty("url"), properties)) {
+            String SqlQuery = "UPDATE games SET `second-player-id`='" + userId + "' WHERE id=" + gameId;
+            try (PreparedStatement st = connection.prepareStatement(SqlQuery)) {
+                st.executeQuery();
+            } catch (SQLException e) {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Connection problem.");
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    @Override
+    public Boolean changeGameState(int gameId, String gameState) {
+        try (Connection connection = DriverManager.getConnection(properties.getProperty("url"), properties)) {
+            String SqlQuery = "UPDATE games SET gameState='" + gameState + "' WHERE id=" + gameId;
+            try (PreparedStatement st = connection.prepareStatement(SqlQuery)) {
+                st.executeQuery();
+            } catch (SQLException e) {
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println("Connection problem.");
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    @Override
     public Boolean setFriend(int meId, int friendId) {
         try (Connection connection = DriverManager.getConnection(properties.getProperty("url"), properties)) {
             String SqlQuery = "INSERT INTO friends (`first-id`, `second-id`) " +
@@ -132,6 +180,7 @@ public class Database implements AbstractDal {
         }
         return true;
     }
+
 
     @Override
     public UserDTO getUser(int id) {
@@ -178,6 +227,29 @@ public class Database implements AbstractDal {
     }
 
     @Override
+    public Iterable<GameDTO> getFreeGames() {
+        List<GameDTO> game = null;
+        try (Connection connection = DriverManager.getConnection(properties.getProperty("url"), properties)) {
+            String SqlQuery = "SELECT games.id, `first-player-id`, `second-player-id`, gamestate, `winner-id`, users.name, users.surname FROM games " +
+                    "LEFT JOIN users ON users.id=games.`first-player-id` WHERE `second-player-id` IS NULL";
+            try (PreparedStatement st = connection.prepareStatement(SqlQuery)) {
+                st.executeQuery();
+                try (ResultSet rs = st.getResultSet()) {
+                    game = new ArrayList<>();
+                    while (rs.next()) {
+                        game.add(getGame(rs));
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Connection problem.");
+            e.printStackTrace();
+        }
+
+        return game;
+    }
+
+    @Override
     public Boolean updateUser(NewUserDTO item, Integer id) {
         try (Connection connection = DriverManager.getConnection(properties.getProperty("url"), properties)) {
             String SqlQuery = "UPDATE users " +
@@ -201,7 +273,7 @@ public class Database implements AbstractDal {
         List<UserDTO> users = null;
         try (Connection connection = DriverManager.getConnection(properties.getProperty("url"), properties)) {
             String SqlQuery = "SELECT users.id, email, login, users.name, surname, `won-games`, `lost-games` " +
-                    "FROM users WHERE login LIKE '%" + searchQuery + "%'";
+                    "FROM users WHERE login LIKE '%" + searchQuery + "%' LIMIT 10";
             try (PreparedStatement st = connection.prepareStatement(SqlQuery)) {
                 st.executeQuery();
                 try (ResultSet rs = st.getResultSet()) { //Что получаем
@@ -220,7 +292,8 @@ public class Database implements AbstractDal {
 
     @Override
     public Iterable<UserDTO> getFriends(int id) {
-        List<UserDTO> users = new ArrayList<>();;
+        List<UserDTO> users = new ArrayList<>();
+        ;
         try (Connection connection = DriverManager.getConnection(properties.getProperty("url"), properties)) {
             String SqlQuery = "SELECT users.id, email, login, users.name, surname, `won-games`, `lost-games` " +
                     "FROM friends LEFT JOIN users ON users.id=friends.`second-id` " +
@@ -295,6 +368,8 @@ public class Database implements AbstractDal {
         game.setSecondPlayerId(rs.getInt(3));
         game.setGameState(rs.getString(4));
         game.setWonId(rs.getInt(5));
+        game.setOpponentName(rs.getString(6));
+        game.setOpponentSurname(rs.getString(7));
         return game;
     }
 }

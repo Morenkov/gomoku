@@ -46,6 +46,7 @@ var mainApp = (function () {
 
         $('.name').html(user.firstName);
         $('.surname').html(user.lastName);
+        $('.login').html(user.login);
         $('.email').html(user.email);
         $('.total-games').html(user.wonGames + user.lostGames);
         $('.win').html(user.wonGames);
@@ -137,6 +138,5 @@ $('document').ready(function () {
         }
     });
 
-    console.log(mainApp.me.token);
     mainApp.initialize();
 });

@@ -30,7 +30,7 @@ public class BLL {
     }
 
     public Boolean checkToken(String token) {
-        if ((token == null) || (userToken.size() == 0) || (token.isEmpty())) { // TODO: Can be removed (presents for better understanding)
+        if ((token == null) || (userToken.size() == 0) || (token.isEmpty())) {
             return false;
         }
         Token storedToken = getToken(token);
@@ -164,5 +164,29 @@ public class BLL {
             return new Gson().toJson(Database.INSTANCE.searchUsers(searchQuery));
         }
         return "Bad Query";
+    }
+
+    public String setFriend(int meId, int friendId) {
+        return new Gson().toJson(Database.INSTANCE.setFriend(meId, friendId));
+    }
+
+    public String joinGame(int userId, int gameId) {
+        return new Gson().toJson(Database.INSTANCE.joinGame(userId, gameId));
+    }
+
+    public String changeGameState(int id, String friendId) {
+        return new Gson().toJson(Database.INSTANCE.changeGameState(id, friendId));
+    }
+
+    public String getGame(int id) {
+        return new Gson().toJson(Database.INSTANCE.getGame(id));
+    }
+
+    public String getFreeGames() {
+        return new Gson().toJson(Database.INSTANCE.getFreeGames());
+    }
+
+    public String createGame(int userId) {
+        return new Gson().toJson(Database.INSTANCE.createGame(userId));
     }
 }

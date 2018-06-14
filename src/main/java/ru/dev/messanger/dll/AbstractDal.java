@@ -14,4 +14,8 @@ public interface AbstractDal {
     Boolean setFriend(int meId, int friendId);
     Boolean updateUser(NewUserDTO item, Integer id);
     Iterable<UserDTO> searchUsers(String searchQuery);
+    Iterable<GameDTO> getFreeGames();
+    Boolean changeGameState(int gameId, String gameState);
+    Boolean joinGame(int userId, int gameId);
+    Boolean createGame(int userId);
 }

@@ -13,6 +13,26 @@ public class GameDTO {
     private String gameState;
     @SerializedName("wonId")
     private int wonId;
+    @SerializedName("opponentName")
+    private String opponentName;
+    @SerializedName("opponentSurname")
+    private String opponentSurname;
+
+    public String getOpponentName() {
+        return opponentName;
+    }
+
+    public void setOpponentName(String opponentName) {
+        this.opponentName = opponentName;
+    }
+
+    public String getOpponentSurname() {
+        return opponentSurname;
+    }
+
+    public void setOpponentSurname(String opponentSurname) {
+        this.opponentSurname = opponentSurname;
+    }
 
     public int getId() {
         return id;
