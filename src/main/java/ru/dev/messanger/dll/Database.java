@@ -101,7 +101,7 @@ public class Database implements AbstractDal {
     @Override
     public Boolean setUser(NewUserDTO item) {
         try (Connection connection = DriverManager.getConnection(properties.getProperty("url"), properties)) {
-            String SqlQuery = "INSERT INTO users (email, login, password, useres.name, surname, `won-games`, `lost-games`) " +
+            String SqlQuery = "INSERT INTO users (email, login, password, users.name, surname, `won-games`, `lost-games`) " +
                     "VALUES ('" + item.getEmail() + "', '" + item.getLogin() + "', '" + item.getPassword() + "', '" + item.getFirstName() + "', '" + item.getLastName() +
                     "', '" + item.getWonGames() + "', '" + item.getLostGames() + "');";
             try (PreparedStatement st = connection.prepareStatement(SqlQuery)) {
@@ -180,7 +180,7 @@ public class Database implements AbstractDal {
     @Override
     public Boolean updateUser(NewUserDTO item, Integer id) {
         try (Connection connection = DriverManager.getConnection(properties.getProperty("url"), properties)) {
-            String SqlQuery = "UPDATE users LEFT JOIN status ON users.status=status.id LEFT JOIN photos ON users.avatar=photos.id " +
+            String SqlQuery = "UPDATE users " +
                     "SET password='" + item.getPassword() + "', users.name='" + item.getFirstName() + "', surname='" + item.getLastName() +
                     "', `won-games`='" + item.getWonGames() + "', `lost-games`='" + item.getLostGames() +
                     "' WHERE users.id='" + id + "';";
@@ -200,9 +200,8 @@ public class Database implements AbstractDal {
     public Iterable<UserDTO> searchUsers(String searchQuery) {
         List<UserDTO> users = null;
         try (Connection connection = DriverManager.getConnection(properties.getProperty("url"), properties)) {
-            String SqlQuery = "SELECT users.id, email, login, first_name, last_name, sex, created_at, VALUE AS status, url AS avatar " +
-                    "FROM users LEFT JOIN status ON users.status=status.id LEFT JOIN photos ON users.avatar=photos.id " +
-                    "WHERE login LIKE '%" + searchQuery + "%'";
+            String SqlQuery = "SELECT users.id, email, login, users.name, surname, `won-games`, `lost-games` " +
+                    "FROM users WHERE login LIKE '%" + searchQuery + "%'";
             try (PreparedStatement st = connection.prepareStatement(SqlQuery)) {
                 st.executeQuery();
                 try (ResultSet rs = st.getResultSet()) { //Что получаем

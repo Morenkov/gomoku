@@ -19,15 +19,15 @@ $('#form').validate({
             email: true,
             maxlength: 35
         },
-        firstName: {
+        name: {
             required: true,
-            minlength: 3,
-            lettersOnly: true
+            lettersOnly: true,
+            minlength: 3
         },
-        lastName: {
+        surname: {
             required: true,
-            minlength: 3,
-            lettersOnly: true
+            lettersOnly: true,
+            minlength: 3
         },
         login: {
             required: true,
@@ -38,6 +38,10 @@ $('#form').validate({
             required: true,
             minlength: 6,
             maxlength: 20
+        },
+        confirmPass: {
+            equalTo: '#password',
+            required: true
         }
     },
     errorClass: "invalid",
@@ -45,15 +49,18 @@ $('#form').validate({
 });
 
 $('document').ready(function () {
-    var $firstName = $("#firstName"),
-        $surname = $("#lastName"),
+    var $firstName = $("#name"),
+        $surname = $("#surname"),
         $login = $("#login"),
         $email = $("#email"),
         $password = $("#password"),
+        $confirm_pass = $("#confirm-pass"),
+        $loginError = $('#login-error'),
+        $emailError = $('#email-error'),
         isLoginValide = false,
         isEmailValide = false;
 
-    $('.send')[0].onclick = function (e) {
+    $('.send').on('click', function (e) {
         var login = $login.val().trim(),
             email = $email.val().trim(),
             password = $password.val().trim(),
@@ -85,12 +92,11 @@ $('document').ready(function () {
                             if (request) {
                                 location.replace('/signin');
                             } else {
-                                console.log('косяк с добавлением');
+                                alert('We cannot create account with current parameters');
                             }
                         },
                         error: function (error) {
                             console.log(error);
-                            alert('server error');
                         }
                     });
                 }
@@ -98,9 +104,9 @@ $('document').ready(function () {
         }
 
         function checkOnFieldsFullFill() {
-            return login.length > 6 && firstName.length > 6 && lastName.length > 6 && email.length > 6 && password.length > 6;
+            return login.length > 3 && firstName.length > 3 && lastName.length > 3 && email.length > 6 && password.length > 6;
         }
-    }
+    });
 
 
     function checkLoginExist(login) {
@@ -114,11 +120,12 @@ $('document').ready(function () {
                 } else {
                     isLoginValide = false;
                     $login.addClass('invalid');
+                    $loginError.css('display', 'block');
+                    $loginError.html('Login already in use');
                 }
             },
             error: function (error) {
                 console.log(error);
-                alert('server error');
             }
         });
     }
@@ -134,11 +141,12 @@ $('document').ready(function () {
                 } else {
                     isEmailValide = false;
                     $email.addClass('invalid');
+                    $emailError.css('display', 'block');
+                    $emailError.html('Email already in use');
                 }
             },
             error: function (error) {
                 console.log(error);
-                alert('server error');
             }
         });
     }

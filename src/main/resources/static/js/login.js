@@ -50,7 +50,6 @@ $('document').ready(function () {
                         method: 'POST',
                         success: function (answer) {
                             var $input = $('#token');
-                            console.log(answer);
                             switch (answer) {
                                 case "User is not activated yet":
                                     $login.addClass('invalid');
