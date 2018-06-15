@@ -5,19 +5,19 @@ var mainApp = (function () {
 
     function getFriends() {
         $.ajax({
-            url: "/getFriends",
+            url: "/getFriends", //получение всех друзей ->RESTController
             method: "POST",
             data: {id: me.id},
             success: function (answer) {
                 var i = 0,
-                    $list = $('.friends'),
-                    $friends = null,
+                    $list = $('.friends'), //считывание полей
+                    $friends = null,       //объявление переменных для позднего использования
                     $btns = null,
                     html = '';
                 console.log(answer);
                 friends = answer;
 
-                for (i = 0; i < friends.length; i += 1) {
+                for (i = 0; i < friends.length; i += 1) { //отрисовка друзей
                     html += '<li class="list-group-item friend">' + friends[i].firstName + ' ' + friends[i].lastName +
                         '<a class="btn btn-default right">Удалить</a></li>';
                 }
@@ -30,19 +30,20 @@ var mainApp = (function () {
                     $friends[i].current = i;
                     $btns[i].current = i;
 
-                    $friends[i].addEventListener('click', function () {
+                    $friends[i].addEventListener('click', function () { //событие простой клик
                         showProfile(friends[this.current]);
                     });
-                    $btns[i].addEventListener('click', function (e) {
+
+                    $btns[i].addEventListener('click', function (e) { //событие на кнопку удаления
                         var friend = friends[this.current];
 
                         e.stopPropagation();
 
                         $.ajax({
-                            url: "/deleteFriend",
+                            url: "/deleteFriend", //удаление Друга ->RESTController
                             method: 'POST',
                             data: {meId: me.id, friendId: friend.id},
-                            success: function (request) {
+                            success: function () {
                                 getFriends();
                             },
                             error: function (error) {
@@ -54,14 +55,13 @@ var mainApp = (function () {
             },
             error: function (error) {
                 console.log(error);
-                alert(error);
             }
         });
     }
 
     function showProfile(user) {
         if (user.id === me.id) {
-            $('.panel-heading:eq(0)').html('Мой аккаунт');
+            $('.panel-heading:eq(0)').html('Мой аккаунт'); //установка полей пользователя
         } else {
             $('.panel-heading:eq(0)').html('Аккаунт друга');
         }
@@ -96,7 +96,7 @@ var mainApp = (function () {
 $('document').ready(function () {
     $.ajaxSetup({
         headers: {
-            'token': mainApp.me.token
+            'token': mainApp.me.token //добавление токена в заголовок запроса
         }
     });
 

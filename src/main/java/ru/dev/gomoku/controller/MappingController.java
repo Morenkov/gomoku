@@ -16,7 +16,7 @@ public class MappingController {
     }
 
     //@GetMapping - указывает возвращаемый шаблон для указанного url адреса
-    //Имя шаблона ищется в папке templatesи возвращается пользователю
+    //Имя шаблона ищется в папке templates и возвращается пользователю
     @GetMapping("/")
     public String root() {
         return "redirect:/signin";

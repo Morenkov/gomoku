@@ -79,26 +79,28 @@ $('#form').validate({
 });
 
 $('document').ready(function () {
-    var $firstName = $("#name"),
+    var $firstName = $("#name"), //считывание всех инпутов
         $surname = $("#surname"),
         $login = $("#login"),
         $email = $("#email"),
         $password = $("#password"),
-        $loginError = $('#login-error'),
+        $confirmPass = $("#confirmPass"),
+        $loginError = $('#login-error'), //считывание лейблов для вывода оишбки
         $emailError = $('#email-error'),
         isLoginValide = false,
         isEmailValide = false;
 
     $('.send').on('click', function (e) {
-        var login = $login.val().trim(),
+        var login = $login.val().trim(), //считывание значений с полей
             email = $email.val().trim(),
             password = $password.val().trim(),
             firstName = $firstName.val().trim(),
+            confimPass = $confirmPass.val().trim(),
             lastName = $surname.val().trim();
 
         e.preventDefault();
 
-        if (checkOnFieldsFullFill()) {
+        if (checkOnFieldsFullFill() && confimPass === password) {
             checkLoginExist($login.val());
             checkEmailExist($email.val());
 

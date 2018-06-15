@@ -15,6 +15,7 @@ public class AuthoriseInterceptor implements HandlerInterceptor {
         this.bll = bll;
     }
 
+    //проверка на доступ к УРЛам
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         String url = request.getRequestURI();
@@ -31,11 +32,12 @@ public class AuthoriseInterceptor implements HandlerInterceptor {
         }
     }
 
+    //разрешенные УРЛки, к которым омжно обратиться без токена
     private Boolean isAllowed(String url) {
         if (url.equals("/")) return true;
         String[] allowed = {"/enter", "/logout", "/signup", "/signin", "/css/", "/fonts/", "/js/",
                 "/activate/", "/setUser", "/emailAlreadyExists", "/authorization", "/loginAlreadyExists", "/profile",
-                "/game", "/gameUsers", "/search"};
+                "/game", "/gameUsers", "/search", "/logout"};
         for (String str : allowed) {
             if (url.indexOf(str) == 0) {
                 return true;

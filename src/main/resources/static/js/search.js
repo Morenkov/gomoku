@@ -10,7 +10,7 @@ var mainApp = (function () {
 
     function showGames() {
         $.ajax({
-            url: '/getFreeGames',
+            url: '/getFreeGames', //получение свободных игр ->RESTController
             method: 'POST',
             success: function (answer) {
                 var html = '', i = 0,
@@ -23,7 +23,7 @@ var mainApp = (function () {
                 if (searchedGames) {
                     //отрисовка найденных игр
                     for (i = 0; i < searchedGames.length; i += 1) {
-                        //пропустить то, что создал я
+                        //пропустить те игры, что создал я
                         if (searchedGames[i].firstPlayerId === me.id) {
                             continue;
                         }
@@ -37,8 +37,8 @@ var mainApp = (function () {
 
                     for (i = 0; i < $games.length; i += 1) {
                         $games[i].current = i;
-                        //событие на нажатие
-                        $games[i].addEventListener('click', function () {
+
+                        $games[i].addEventListener('click', function () { //установка событий на клик
                             var answ = false,
                                 game = searchedGames[this.current];
 
@@ -46,22 +46,21 @@ var mainApp = (function () {
 
                             if (answ) {
                                 $.ajax({
-                                    url: '/joinGame',
+                                    url: '/joinGame', //присоединение к игре ->RESTController
                                     method: 'POST',
                                     data: {userId: me.id, gameId: game.id},
                                     success: function (answer) {
                                         console.log(answer);
                                         if (answer) {
                                             game.secondPlayerId = me.id;
-                                            localStorage.setItem('type', '2');
+                                            localStorage.setItem('type', '2'); //сохранение игры и символа локально
                                             localStorage.setItem('game', JSON.stringify(game));
 
-                                            location.replace('/gameUsers');
+                                            location.replace('/gameUsers'); //перенаправление страницы
                                         }
                                     },
                                     error: function (error) {
                                         console.log(error);
-                                        alert('server error');
                                     }
                                 });
                             }
@@ -71,20 +70,19 @@ var mainApp = (function () {
             },
             error: function (error) {
                 console.log(error);
-                alert('server error');
             }
         });
     }
 
     function initializeSearch() {
-        var $field = $('#search'),
-            $btn = $('#start-search');
+        var $field = $('#search'), //поле поиска
+            $btn = $('#start-search'); //кнопка старта поиска
 
         $btn.on('click', function () {
             var value = $field.val();
 
             $.ajax({
-                url: '/searchUsers',
+                url: '/searchUsers',  //поиск пользователей по логину ->RESTController
                 method: 'POST',
                 data: {searchQuery: value},
                 success: function (request) {
@@ -95,7 +93,7 @@ var mainApp = (function () {
                     if (request) {
                         searchedUsers = request;
 
-                        for (i = 0; i < searchedUsers.length; i += 1) {
+                        for (i = 0; i < searchedUsers.length; i += 1) { //отрисовка найленных юзеров, кроме самого себя
                             if (searchedUsers[i].id === me.id) {
                                 continue;
                             }
@@ -106,8 +104,8 @@ var mainApp = (function () {
 
                         $users = $('.user');
 
-                        for (i = 0; i < $users.length; i += 1) {
-                            $users[i].current = i;
+                        for (i = 0; i < $users.length; i += 1) { //установка событий на клик по списку пользователей
+                            $users[i].current = i;               //для добавления их в друзья
                             $users[i].addEventListener('click', function () {
                                 var answ = false,
                                     newFriend = searchedUsers[this.current];
@@ -116,7 +114,7 @@ var mainApp = (function () {
 
                                 if (answ) {
                                     $.ajax({
-                                        url: '/addFriend',
+                                        url: '/addFriend', //добавление друга ->RESTController
                                         method: 'POST',
                                         data: {meId: +me.id, friendId: +newFriend.id},
                                         success: function (answer) {
@@ -124,7 +122,6 @@ var mainApp = (function () {
                                         },
                                         error: function (error) {
                                             console.log(error);
-                                            alert('server error');
                                         }
                                     });
                                 }
@@ -134,7 +131,6 @@ var mainApp = (function () {
                 },
                 error: function (error) {
                     console.log(error);
-                    alert('server error');
                 }
             });
         });
@@ -149,7 +145,7 @@ var mainApp = (function () {
 $('document').ready(function () {
     $.ajaxSetup({
         headers: {
-            'token': mainApp.me.token
+            'token': mainApp.me.token //добавление токена в заголовок запроса
         }
     });
 

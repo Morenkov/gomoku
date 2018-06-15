@@ -88,13 +88,13 @@ public class BLL {
     }
 
     public String authorization(String login, String password) {
-        if (loginAlreadyExists(login) == "false") {
+        if (loginAlreadyExists(login) == "false") { //если такой почты нет
             return new Gson().toJson("Такого пользователя нет");
         }
 
         UserDTO user = Database.INSTANCE.authorization(login, Encoder.hash256(password));
         if (user == null) {
-            return new Gson().toJson("Неверный пароль");
+            return new Gson().toJson("Неверный пароль"); //если не удалось достать юзера из бд с текущем паролем и почтой
         }
 
         Token tkn = new Token();
@@ -122,7 +122,7 @@ public class BLL {
         NewUserDTO user = new NewUserDTO();
         user.setEmail(email);
         user.setLogin(login);
-        user.setPassword(Encoder.hash256(password));
+        user.setPassword(Encoder.hash256(password));  //создание пользователя
         user.setFirstName(first_name);
         user.setLastName(last_name);
         user.setWonGames(wonGames);

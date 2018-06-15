@@ -21,6 +21,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(new AuthoriseInterceptor(bll));
     }
 
+    //указание путей для выгрузки стилией, JS
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**")

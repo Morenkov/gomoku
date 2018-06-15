@@ -23,6 +23,8 @@ public class RESTController {
 
     //@RequestMapping - используется для установления URL, метода передачи данных (ГЕТ или ПОСТ)
     //produces - формат данных, которым отвечает сервер
+    //все запросы от сюда идут в бизнес логику
+    //з бизнес логики - в базу данных, для сохранения\получения данных
     @RequestMapping(value = "/emailAlreadyExists", method = RequestMethod.POST, produces = "application/json")
     public String emailAlreadyExists(@RequestParam String email) {
         return bll.emailAlreadyExists(email);
