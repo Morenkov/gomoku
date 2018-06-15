@@ -1,0 +1,12 @@
+1) Выполнить database.sql
+
+2) Перейти в /src/main/resources
+
+3) Открыть файл application.properties
+
+4) Заменить поля spring.datasource.username и spring.datasource.password на соответствующие
+Пример:
+spring.datasource.username=root
+spring.datasource.password=root
+
+

@@ -15,6 +15,7 @@ var mainApp = (function () {
             success: function (answer) {
                 var html = '', i = 0,
                     $games = null;
+
                 console.log(answer);
 
                 searchedGames = answer;

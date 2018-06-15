@@ -21,6 +21,8 @@ public class RESTController {
         return bll.authorization(login, password);
     }
 
+    //@RequestMapping - используется для установления URL, метода передачи данных (ГЕТ или ПОСТ)
+    //produces - формат данных, которым отвечает сервер
     @RequestMapping(value = "/emailAlreadyExists", method = RequestMethod.POST, produces = "application/json")
     public String emailAlreadyExists(@RequestParam String email) {
         return bll.emailAlreadyExists(email);
@@ -101,6 +103,14 @@ public class RESTController {
             @RequestParam int friendId
     ) {
         return bll.setFriend(meId, friendId);
+    }
+
+    @RequestMapping(value = "/deleteFriend", method = RequestMethod.POST, produces = "application/json")
+    public String deleteFriend(
+            @RequestParam int meId,
+            @RequestParam int friendId
+    ) {
+        return bll.deleteFriend(meId, friendId);
     }
 
     @RequestMapping(value = "/setWinner", method = RequestMethod.POST, produces = "application/json")

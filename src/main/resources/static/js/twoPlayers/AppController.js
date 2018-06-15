@@ -8,10 +8,10 @@ var AppController = function(model, view) {
 
     this.init = function() {
         AppController.mouse = new MouseController(view.canvas, AppController.move, AppController.click);
-        AppController.newGame(1);
+        AppController.newGame();
     };
 
-    this.newGame = function(a) {
+    this.newGame = function() {
         this.view.renderBoard();
         this.model.setStartData();
     };

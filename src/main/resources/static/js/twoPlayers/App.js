@@ -39,8 +39,9 @@ $('document').ready(function(){
         var answ = false;
 
         answ = confirm('После перехода вы не сможете, вернуться. Продолжить?');
-        //TODO: выход из игры при проигрыши
-        //TODO: кнопки
-        //TODO
+
+        if(answ){
+            location.replace('/game');
+        }
     });
 });

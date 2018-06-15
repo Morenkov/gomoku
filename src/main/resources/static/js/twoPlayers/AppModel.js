@@ -14,10 +14,10 @@ var AppModel = function () {
     this.playing; // True - игра в процессе игры (пользователь может кликать на поле и т.д.)
     this.winLine; // Координаты победной линии
     this.step = 0; // Счетчик ходов игры\
-    this.user;
-    this.game;
-    this.canClick;
-    this.gameState;
+    this.user; //
+    this.game; //
+    this.canClick; //
+    this.gameState; //
     this.prePattern = [ // Шаблоны построения фигрур и их веса. Х в дальнейшем заменяется на крестик (1) или нолик (0), 0 - свободная ячейка
         {s: 'xxxxx', w: 99999}, // пять в ряд (финальная выигрышная линия)
         {s: '0xxxx0', w: 7000}, // Открытая четверка
@@ -101,7 +101,7 @@ var AppModel = function () {
                     alert('server error');
                 }
             });
-        }, 4000);
+        }, 2000);
     };
 
     this.setStartData = function (a) { // Начальные установки для каждой новой игры
@@ -161,6 +161,7 @@ var AppModel = function () {
             this.winLine = [this.m - Math.min(nT, nL) + k, this.n - Math.min(nT, nL) + k, this.m - Math.min(nT, nL) + k + 4, this.n - Math.min(nT, nL) + k + 4];
         else if ((k = s[3].search(this.patternWin[t])) >= 0)
             this.winLine = [this.m - Math.min(nB, nL) + k, this.n + Math.min(nB, nL) - k, this.m - Math.min(nB, nL) + k + 4, this.n + Math.min(nB, nL) - k - 4, -1];
+
         this.playing = (this.freeCells !== 0 && this.winLine.length === 0); // Проверка на окончание игры (победа или нет свободных ячеек)
 
         this.gameState = this.matrix.join('').split(',').join('');

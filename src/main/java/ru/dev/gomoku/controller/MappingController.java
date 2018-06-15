@@ -15,6 +15,8 @@ public class MappingController {
         this.bll = bll;
     }
 
+    //@GetMapping - указывает возвращаемый шаблон для указанного url адреса
+    //Имя шаблона ищется в папке templatesи возвращается пользователю
     @GetMapping("/")
     public String root() {
         return "redirect:/signin";
@@ -25,6 +27,8 @@ public class MappingController {
         return "Signin";
     }
 
+    //Проверка на вход пользователя. Если есть токен, то перевод на стрнаницу аккаунта
+    //Если нет, то перевод на страницу входа
     @PostMapping("/enter")
     public String enter(@RequestParam String token) {
         return bll.checkToken(token) ? "redirect:/profile" : "redirect:/signin";
@@ -55,6 +59,7 @@ public class MappingController {
         return "Signup";
     }
 
+    //При выходе, удаляется токен для текущего юзера из бизнес-логики
     @PostMapping("/logout")
     public String logout(@RequestParam String token) {
         bll.removeToken(token);

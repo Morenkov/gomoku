@@ -121,7 +121,7 @@ $('document').ready(function () {
                             if (request) {
                                 location.replace('/signin');
                             } else {
-                                alert('We cannot create account with current parameters');
+                                alert('Мы не можем создать пользователя с текущими параметрами');
                             }
                         },
                         error: function (error) {
@@ -150,7 +150,7 @@ $('document').ready(function () {
                     isLoginValide = false;
                     $login.addClass('invalid');
                     $loginError.css('display', 'block');
-                    $loginError.html('Login already in use');
+                    $loginError.html('Логин уже используется');
                 }
             },
             error: function (error) {
@@ -171,7 +171,7 @@ $('document').ready(function () {
                     isEmailValide = false;
                     $email.addClass('invalid');
                     $emailError.css('display', 'block');
-                    $emailError.html('Email already in use');
+                    $emailError.html('Email уже используется');
                 }
             },
             error: function (error) {

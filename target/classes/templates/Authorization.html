@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Авторизация</title>
+    <link type="text/css" rel="stylesheet" href="css/login.css">
+    <link type="text/css" rel="stylesheet" href="css/errors.css">
+</head>
+<body>
+
+<div>
+    <h1 align="center">Авторизация</h1>
+    <form action="/enter" id="form" method="post">
+        <p align="center"><label for="email">E-mail:</label>
+            <input type="text" name="email" id="email">
+            <label id="email-error" class="invalid" for="email"></label></p>
+        <p align="center"><label for="password">Пароль:</label>
+            <input type="password" name="password" id="password" value="" maxlength="20">
+            <input type="hidden" id="token" name="token">
+            <label id="password-error" class="invalid" for="password"></label>
+        </p>
+        <p class="login-submit">
+            <button type="submit" class="send">Вход</button>
+            <a href="/signup" role="button">Регистрация</a></p>
+    </form>
+</div>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery.validate.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>

@@ -31,8 +31,8 @@ $('#form').validate({
 
 $('document').ready(function () {
     var $email = $('#email'),
-        $password = $('#password');
-    $passError = $('#password-error'),
+        $password = $('#password'),
+        $passError = $('#password-error'),
         $emailError = $('#email-error');
 
     $email.on('focus', function (e) {
@@ -62,6 +62,7 @@ $('document').ready(function () {
                         method: 'POST',
                         success: function (answer) {
                             var $input = $('#token');
+
                             switch (answer) {
                                 case "Такого пользователя нет":
                                 case "Неверный пароль":
@@ -84,7 +85,7 @@ $('document').ready(function () {
                 } else {
                     $email.addClass('invalid');
                     $emailError.css('display', 'block');
-                    $emailError.html('Incorrect login or email');
+                    $emailError.html('Некорректный email');
                 }
             },
             error: function (error) {

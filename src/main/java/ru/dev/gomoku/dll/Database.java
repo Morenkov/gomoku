@@ -210,6 +210,25 @@ public class Database implements AbstractDal {
         return true;
     }
 
+    @Override
+    public Boolean deleteFriend(int meId, int friendId) {
+        try (Connection connection = DriverManager.getConnection(properties.getProperty("url"), properties)) {
+            String SqlQuery = "DELETE FROM friends WHERE `first-id`=" + meId + " AND `second-id`=" + friendId +
+                    " OR `first-id`=" + friendId + " AND `second-id`=" + meId;
+            try (PreparedStatement st = connection.prepareStatement(SqlQuery)) {
+                st.executeQuery();
+            } catch (SQLException e) {
+                return false;
+            }
+
+
+        } catch (SQLException e) {
+            System.out.println("Connection problem.");
+            e.printStackTrace();
+        }
+        return true;
+    }
+
 
     @Override
     public UserDTO getUser(int id) {
@@ -238,7 +257,7 @@ public class Database implements AbstractDal {
         GameDTO game = null;
         try (Connection connection = DriverManager.getConnection(properties.getProperty("url"), properties)) {
             String SqlQuery = "SELECT games.id, `first-player-id`, `second-player-id`, gamestate, `winner-id`, users.name, users.surname FROM games " +
-                    "LEFT JOIN users ON users.id=games.`first-player-id` WHERE games.id='"+id+"' LIMIT 1";
+                    "LEFT JOIN users ON users.id=games.`first-player-id` WHERE games.id='" + id + "' LIMIT 1";
             try (PreparedStatement st = connection.prepareStatement(SqlQuery)) {
                 st.executeQuery();
                 try (ResultSet rs = st.getResultSet()) {

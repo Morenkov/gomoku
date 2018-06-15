@@ -39,7 +39,7 @@ var AppView = function (model) {
             }
             if (!model.playing)
                 AppView.renderWinLine();
-        }, 3000);
+        }, 2000);
     };
 
     this.renderBoard = function () {

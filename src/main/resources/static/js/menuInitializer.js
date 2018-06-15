@@ -9,7 +9,7 @@ $('document').ready(function () {
             $.ajax({
                 url: "/createGame",
                 method: 'POST',
-                data: {userId: me.id},
+                data: {userId: mainApp.me.id},
                 success: function (request) {
                     console.log(request);
 
@@ -28,16 +28,9 @@ $('document').ready(function () {
     });
 
     $('.logout').on('click', function () {
-        $.ajax({
-            url: "/logout",
-            method: "POST",
-            data: {id: mainApp.me.id},
-            success: function (answer) {
-                console.log(asnwer);
-                localStorage.removeItem('user');
-                location.replace('/signin');
-            }
-        });
+        localStorage.removeItem('user');
+        localStorage.removeItem('type');
+        localStorage.removeItem('game');
     });
 
     $('.my-account').on('click', function () {

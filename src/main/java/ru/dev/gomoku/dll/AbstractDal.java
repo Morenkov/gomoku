@@ -19,4 +19,5 @@ public interface AbstractDal {
     Boolean joinGame(int userId, int gameId);
     GameDTO createGame(int userId);
     Boolean setWinner(int gameId, int winnerId);
+    Boolean deleteFriend(int meId, int friendId);
 }

@@ -96,6 +96,7 @@ public class BLL {
         if (user == null) {
             return new Gson().toJson("Неверный пароль");
         }
+
         Token tkn = new Token();
         TUser tuser = new TUser(user, tkn.getStringToken());
         addTokenToUser(tuser, tkn);
@@ -176,6 +177,10 @@ public class BLL {
 
     public String setWinner(int gameId, int winnerId) {
         return new Gson().toJson(Database.INSTANCE.setWinner(gameId, winnerId));
+    }
+
+    public String deleteFriend(int meId, int friendId){
+        return new Gson().toJson(Database.INSTANCE.deleteFriend(meId, friendId));
     }
 
     public String changeGameState(int id, String friendId) {
