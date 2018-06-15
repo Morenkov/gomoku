@@ -174,6 +174,10 @@ public class BLL {
         return new Gson().toJson(Database.INSTANCE.joinGame(userId, gameId));
     }
 
+    public String setWinner(int gameId, int winnerId) {
+        return new Gson().toJson(Database.INSTANCE.joinGame(gameId, winnerId));
+    }
+
     public String changeGameState(int id, String friendId) {
         return new Gson().toJson(Database.INSTANCE.changeGameState(id, friendId));
     }

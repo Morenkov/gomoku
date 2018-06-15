@@ -17,5 +17,6 @@ public interface AbstractDal {
     Iterable<GameDTO> getFreeGames();
     Boolean changeGameState(int gameId, String gameState);
     Boolean joinGame(int userId, int gameId);
-    Boolean createGame(int userId);
+    GameDTO createGame(int userId);
+    Boolean setWinner(int gameId, int winnerId);
 }

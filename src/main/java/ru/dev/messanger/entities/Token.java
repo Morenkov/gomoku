@@ -5,7 +5,7 @@ import java.util.UUID;
 
 public class Token {
 
-    public final static int LIFETIME = 300;
+    public final static int LIFETIME = 30000;
 
     private final String STRING_VALUE = UUID.randomUUID().toString();
 

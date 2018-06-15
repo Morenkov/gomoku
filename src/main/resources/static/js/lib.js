@@ -1,6 +1,23 @@
 ;
 'use strict';
 
+function getMatrixFromString(gameState) {
+    var matrix = [], i = 0,
+        tempArr = [];
+
+    tempArr = gameState.split('');
+
+    for (i = 0; i < tempArr.length; i += 1) {
+        tempArr[i] = +tempArr[i];
+    }
+
+    for (i = 0; i < 15; i += 1) {
+        matrix.push(tempArr.splice(0, 15));
+    }
+
+    return matrix;
+}
+
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }

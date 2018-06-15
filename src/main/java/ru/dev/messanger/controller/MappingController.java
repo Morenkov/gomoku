@@ -29,10 +29,10 @@ public class MappingController {
 
     @PostMapping("/enter")
     public String enter(@RequestParam String token) {
-        return bll.checkToken(token) ? "redirect:/main" : "redirect:/signin";
+        return bll.checkToken(token) ? "redirect:/profile" : "redirect:/signin";
     }
 
-    @GetMapping("/main")
+    @GetMapping("/profile")
     public String main() {
         return "account";
     }
@@ -40,6 +40,11 @@ public class MappingController {
     @GetMapping("/game")
     public String game() {
         return "GamePage";
+    }
+
+    @GetMapping("/gameUsers")
+    public String gameUsers() {
+        return "Game";
     }
 
     @GetMapping("/search")

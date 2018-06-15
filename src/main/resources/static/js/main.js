@@ -38,7 +38,7 @@ var mainApp = (function () {
     }
 
     function showProfile(user) {
-        if (user.id === me.id){
+        if (user.id === me.id) {
             $('.panel-heading:eq(0)').html('Мой аккаунт');
         } else {
             $('.panel-heading:eq(0)').html('Аккаунт друга');
@@ -118,6 +118,34 @@ var mainApp = (function () {
 
         $('.my-account').on('click', function () {
             showProfile(me);
+        });
+
+        $('.create-game').on('click', function () {
+            var answ = false;
+
+            answ = confirm('Создать новую игру?');
+
+            if (answ) {
+                $.ajax({
+                    url: "/createGame",
+                    method: 'POST',
+                    data: {userId: me.id},
+                    success: function (request) {
+                        console.log(request);
+
+                        if (request) {
+                            localStorage.setItem('game', JSON.stringify(request));
+                            localStorage.setItem('type', '1');
+                            alert('перелетаю');
+                            location.replace('/gameUsers');
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error);
+                        alert(error);
+                    }
+                });
+            }
         });
 
         showProfile(me);

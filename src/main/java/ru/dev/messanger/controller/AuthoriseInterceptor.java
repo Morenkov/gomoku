@@ -19,12 +19,11 @@ public class AuthoriseInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         String url = request.getRequestURI();
-        if (isAllowed(url)){
+        if (isAllowed(url)) {
             return true;
-        } else if (bll.checkToken(request.getHeader("token"))){
+        } else if (bll.checkToken(request.getHeader("token"))) {
             System.out.println(request.getHeader("token"));
-            if (request.getHeader("token") == null)
-            {
+            if (request.getHeader("token") == null) {
                 return true;
             }
             return true;
@@ -32,11 +31,14 @@ public class AuthoriseInterceptor implements HandlerInterceptor {
             return false;
         }
     }
-    private Boolean isAllowed(String url){
+
+    private Boolean isAllowed(String url) {
         if (url.equals("/")) return true;
-        String[] allowed = {"/enter", "/logout" ,"/signup", "/signin", "/css/", "/fonts/", "/img/", "/js/", "/psd/", "/activate/", "/setUser","/emailAlreadyExists", "/loginAlreadyExists", "/authorization", "/main", "/game","/search"};
-        for (String str: allowed) {
-            if (url.indexOf(str) == 0){
+        String[] allowed = {"/enter", "/logout", "/signup", "/signin", "/css/", "/fonts/", "/img/", "/js/", "/psd/",
+                "/activate/", "/setUser", "/emailAlreadyExists", "/loginAlreadyExists", "/authorization", "/profile",
+                "/game", "/search", "/gameUsers"};
+        for (String str : allowed) {
+            if (url.indexOf(str) == 0) {
                 return true;
             }
         }

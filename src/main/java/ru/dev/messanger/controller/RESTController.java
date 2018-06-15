@@ -84,7 +84,7 @@ public class RESTController {
         return bll.getGame(id);
     }
 
-    @RequestMapping(value = "/getGame", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/createGame", method = RequestMethod.POST, produces = "application/json")
     public String createGame(@RequestParam int userId) {
         return bll.createGame(userId);
     }
@@ -105,5 +105,13 @@ public class RESTController {
             @RequestParam int friendId
     ) {
         return bll.setFriend(meId, friendId);
+    }
+
+    @RequestMapping(value = "/setWinner", method = RequestMethod.POST, produces = "application/json")
+    public String setWinner(
+            @RequestParam int gameId,
+            @RequestParam int winnerId
+    ) {
+        return bll.setWinner(gameId, winnerId);
     }
 }
