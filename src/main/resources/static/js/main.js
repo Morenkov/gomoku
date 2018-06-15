@@ -105,49 +105,6 @@ var mainApp = (function () {
     }
 
     function initialize() {
-        $('.logout').on('click', function () {
-            $.ajax({
-                url: "/logout",
-                method: "POST",
-                data: {id: me.id},
-                success: function (anwer) {
-                    console.log(anwer);
-                }
-            });
-        });
-
-        $('.my-account').on('click', function () {
-            showProfile(me);
-        });
-
-        $('.create-game').on('click', function () {
-            var answ = false;
-
-            answ = confirm('Создать новую игру?');
-
-            if (answ) {
-                $.ajax({
-                    url: "/createGame",
-                    method: 'POST',
-                    data: {userId: me.id},
-                    success: function (request) {
-                        console.log(request);
-
-                        if (request) {
-                            localStorage.setItem('game', JSON.stringify(request));
-                            localStorage.setItem('type', '1');
-                            alert('перелетаю');
-                            location.replace('/gameUsers');
-                        }
-                    },
-                    error: function (error) {
-                        console.log(error);
-                        alert(error);
-                    }
-                });
-            }
-        });
-
         showProfile(me);
         changePassword();
         getFriends();
@@ -155,7 +112,8 @@ var mainApp = (function () {
 
     return {
         initialize: initialize,
-        me: me
+        me: me,
+        showProfile: showProfile
     };
 }());
 

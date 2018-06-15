@@ -89,12 +89,12 @@ public class BLL {
 
     public String authorization(String login, String password) {
         if (loginAlreadyExists(login) == "false") {
-            return new Gson().toJson("No Such User"); //TODO: связана с ранним запросом ДО авторизации loginaleready exists И НЕ ТЕСТИТСЯ ИБО НИКАК чина давай
+            return new Gson().toJson("Такого пользователя нет");
         }
 
         UserDTO user = Database.INSTANCE.authorization(login, Encoder.hash256(password));
         if (user == null) {
-            return new Gson().toJson("Incorrect password");
+            return new Gson().toJson("Неверный пароль");
         }
         Token tkn = new Token();
         TUser tuser = new TUser(user, tkn.getStringToken());
@@ -175,7 +175,7 @@ public class BLL {
     }
 
     public String setWinner(int gameId, int winnerId) {
-        return new Gson().toJson(Database.INSTANCE.joinGame(gameId, winnerId));
+        return new Gson().toJson(Database.INSTANCE.setWinner(gameId, winnerId));
     }
 
     public String changeGameState(int id, String friendId) {

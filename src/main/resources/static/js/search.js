@@ -50,7 +50,6 @@ var mainApp = (function () {
                                     data: {userId: me.id, gameId: game.id},
                                     success: function (answer) {
                                         console.log(answer);
-                                        alert('перелетаю');
                                         if (answer) {
                                             game.secondPlayerId = me.id;
                                             localStorage.setItem('type', '2');

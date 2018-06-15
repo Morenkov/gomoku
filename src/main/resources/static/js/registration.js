@@ -45,7 +45,37 @@ $('#form').validate({
         }
     },
     errorClass: "invalid",
-    validClass: "valid"
+    messages: {
+        email: {
+            required: 'Введите e-mail',
+            email: 'Введите корректный адрес',
+            maxlength: 'Максимум 35 символов'
+        },
+        password: {
+            required: 'Введите пароль',
+            maxlength: 'Максимум 20 символов',
+            minlength: 'Минимум 6 символов'
+        },
+        name: {
+            required: 'Это поле обязательно',
+            lettersOnly: 'Вводите только буквы',
+            minlength: 'Минимальная длина 3 символа'
+        },
+        surname: {
+            required: 'Это поле обязательно',
+            lettersOnly: 'Вводите только буквы',
+            minlength: 'Минимальная длина 3 символа'
+        },
+        login: {
+            required: 'Это поле обязательно',
+            minlength: 'Минимальная длина 6 символов',
+            lettersDegitsOnly: 'Вводите только буквы и цифры'
+        },
+        confirmPass: {
+            equalTo: 'Пароли не совпадают',
+            required: 'Это поле обязательно'
+        }
+    }
 });
 
 $('document').ready(function () {
@@ -54,7 +84,6 @@ $('document').ready(function () {
         $login = $("#login"),
         $email = $("#email"),
         $password = $("#password"),
-        $confirm_pass = $("#confirm-pass"),
         $loginError = $('#login-error'),
         $emailError = $('#email-error'),
         isLoginValide = false,
@@ -100,7 +129,7 @@ $('document').ready(function () {
                         }
                     });
                 }
-            }, 800);
+            }, 1000);
         }
 
         function checkOnFieldsFullFill() {

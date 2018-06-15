@@ -14,13 +14,25 @@ $('#form').validate({
             maxlength: 20
         }
     },
-    errorClass: "invalid"
+    errorClass: "invalid",
+    messages: {
+        email: {
+            required: 'Введите e-mail',
+            email: 'Введите корректный адрес',
+            minlength: 'Минимум 6 символов'
+        },
+        password: {
+            required: 'Введите пароль',
+            maxlength: 'Максимум 20 символов',
+            minlength: 'Минимум 6 символов'
+        }
+    }
 });
 
 $('document').ready(function () {
     var $email = $('#email'),
         $password = $('#password');
-        $passError = $('#password-error'),
+    $passError = $('#password-error'),
         $emailError = $('#email-error');
 
     $email.on('focus', function (e) {
@@ -51,13 +63,8 @@ $('document').ready(function () {
                         success: function (answer) {
                             var $input = $('#token');
                             switch (answer) {
-                                case "User is not activated yet":
-                                    $login.addClass('invalid');
-                                    $emailError.css('display', 'block');
-                                    $emailError.html(answer);
-                                    break;
-                                case "No Such User":
-                                case "Incorrect password":
+                                case "Такого пользователя нет":
+                                case "Неверный пароль":
                                     $password.addClass('invalid');
                                     $passError.css('display', 'block');
                                     $passError.html(answer);

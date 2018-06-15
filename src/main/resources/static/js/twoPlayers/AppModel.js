@@ -73,7 +73,7 @@ var AppModel = function () {
                         console.log(request);
                         AppModel.gameState = request.gameState;
 
-                        if (request.winnerId && request.winnerId !== AppModel.user.id){
+                        if (request.wonId && request.wonId !== AppModel.user.id){
                             alert('Вы програли!');
                             localStorage.removeItem('type');
                             localStorage.removeItem('game');
@@ -169,7 +169,7 @@ var AppModel = function () {
             $.ajax({
                 url: "/setWinner",
                 method: 'POST',
-                data: {winnerId: this.user.id, gameId: this.game.id},
+                data: {winnerId: AppModel.user.id, gameId: AppModel.game.id},
                 success: function (request) {
                     console.log(request);
                     alert('Вы выиграли!');

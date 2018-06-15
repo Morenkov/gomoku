@@ -31,10 +31,13 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a class="my-account" href="/profile">Аккаунт</a></li>
-                <li><a>Создать игру</a></li>
-                <li class="active"><a href="">Найти игру\пользователя</a></li>
+                <li><a href="/profile">Аккаунт</a></li>
+                <li><a class="create-game">Создать игру</a></li>
+                <li class="active"><a href="/search">Найти игру\пользователя</a></li>
                 <li><a href="/game">Играть с ботом</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="logout">Выйти</a></li>
             </ul>
         </div>
     </div>
@@ -66,7 +69,7 @@
 </div>
 
 <script src="js/jquery-3.3.1.min.js"></script>
-<script src="js//bootstrap.min.js"></script>
 <script src="js/search.js"></script>
+<script src="js/menuInitializer.js"></script>
 </body>
 </html>

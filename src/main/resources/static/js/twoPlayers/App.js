@@ -33,3 +33,14 @@
         }
     };
 })();
+
+$('document').ready(function(){
+    $('.play-with-bot').on('click', function () {
+        var answ = false;
+
+        answ = confirm('После перехода вы не сможете, вернуться. Продолжить?');
+        //TODO: выход из игры при проигрыши
+        //TODO: кнопки
+        //TODO
+    });
+});

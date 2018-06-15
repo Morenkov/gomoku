@@ -3,7 +3,7 @@
 
 (new function() {
     var App = this;
-    this.files = ['js/lib.js', 'js/AppModel.js', 'js/AppView.js', 'js/AppController.js', 'js/MouseController.js'];
+    this.files = ['js/lib.js', 'js/onePlayer/AppModel.js', 'js/onePlayer/AppView.js', 'js/onePlayer/AppController.js', 'js/onePlayer/MouseController.js'];
     this.model;
     this.view;
     this.controller;
