@@ -1,4 +1,4 @@
-package ru.dev.messanger;
+package ru.dev.gomoku;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

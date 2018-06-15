@@ -1,11 +1,11 @@
-package ru.dev.messanger.BLL;
+package ru.dev.gomoku.BLL;
 
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import ru.dev.messanger.dll.Database;
-import ru.dev.messanger.entities.*;
+import ru.dev.gomoku.dll.Database;
+import ru.dev.gomoku.entities.*;
 
 import java.time.Instant;
 import java.util.HashMap;

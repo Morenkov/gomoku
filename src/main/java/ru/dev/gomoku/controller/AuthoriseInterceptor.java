@@ -1,9 +1,8 @@
-package ru.dev.messanger.controller;
+package ru.dev.gomoku.controller;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import ru.dev.messanger.BLL.BLL;
+import ru.dev.gomoku.BLL.BLL;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -1,4 +1,4 @@
-package ru.dev.messanger.entities;
+package ru.dev.gomoku.entities;
 
 import java.time.Instant;
 import java.util.UUID;

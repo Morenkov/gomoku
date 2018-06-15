@@ -1,14 +1,10 @@
-package ru.dev.messanger.controller;
+package ru.dev.gomoku.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
-import ru.dev.messanger.BLL.BLL;
-import ru.dev.messanger.entities.NewUserDTO;
-
-import javax.validation.Valid;
+import ru.dev.gomoku.BLL.BLL;
 
 
 @RestController

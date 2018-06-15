@@ -1,7 +1,6 @@
-package ru.dev.messanger.entities;
+package ru.dev.gomoku.entities;
 
 import com.google.gson.annotations.SerializedName;
-import ru.dev.messanger.BLL.BLL;
 
 public class TUser extends NewUserDTO {
 

@@ -1,11 +1,6 @@
-package ru.dev.messanger.entities;
+package ru.dev.gomoku.entities;
 
 import com.google.gson.annotations.SerializedName;
-import ru.dev.messanger.BLL.BLL;
-
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 public class UserDTO {
 

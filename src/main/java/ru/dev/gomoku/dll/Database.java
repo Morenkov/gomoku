@@ -1,6 +1,6 @@
-package ru.dev.messanger.dll;
+package ru.dev.gomoku.dll;
 
-import ru.dev.messanger.entities.*;
+import ru.dev.gomoku.entities.*;
 
 import java.sql.*;
 import java.util.ArrayList;

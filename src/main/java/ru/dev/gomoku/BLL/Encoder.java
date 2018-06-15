@@ -1,4 +1,4 @@
-package ru.dev.messanger.BLL;
+package ru.dev.gomoku.BLL;
 
 import java.security.*;
 

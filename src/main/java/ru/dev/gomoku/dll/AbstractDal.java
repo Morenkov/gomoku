@@ -1,7 +1,7 @@
-package ru.dev.messanger.dll;
+package ru.dev.gomoku.dll;
 
-import ru.dev.messanger.entities.*;
-import ru.dev.messanger.entities.UserDTO;
+import ru.dev.gomoku.entities.*;
+import ru.dev.gomoku.entities.UserDTO;
 
 public interface AbstractDal {
     UserDTO authorization(String login, String password);

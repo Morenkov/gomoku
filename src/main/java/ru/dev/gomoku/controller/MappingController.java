@@ -1,12 +1,10 @@
-package ru.dev.messanger.controller;
+package ru.dev.gomoku.controller;
 
-import com.google.gson.Gson;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.dev.messanger.BLL.BLL;
-import ru.dev.messanger.entities.NewUserDTO;
+import ru.dev.gomoku.BLL.BLL;
 
 @Controller
 public class MappingController {
