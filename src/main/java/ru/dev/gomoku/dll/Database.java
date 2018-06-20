@@ -36,13 +36,13 @@ public class Database implements AbstractDal {
         UserDTO user = null;
         try (Connection connection = DriverManager.getConnection(properties.getProperty("url"), properties)) {
             String SqlQuery = "SELECT users.id, email, login, users.name, surname, `won-games`, `lost-games` FROM users  " +
-                    "WHERE (login='" + login + "' OR email='" + login + "') AND password='" + password + "';";
+                    "WHERE (email='" + login + "') AND password='" + password + "';";
             try (PreparedStatement st = connection.prepareStatement(SqlQuery)) {
                 st.executeQuery();
                 try (ResultSet rs = st.getResultSet()) {
                     user = new UserDTO();
                     while (rs.next()) {
-                        user = getAUser(rs);
+                        user = getUser(rs);
                     }
                 }
             }
@@ -392,7 +392,7 @@ public class Database implements AbstractDal {
         user.setFirstName(rs.getString(4));
         user.setLastName(rs.getString(5));
         user.setWonGames(rs.getInt(6));
-        user.setLostGames(rs.getInt(6));
+        user.setLostGames(rs.getInt(7));
         return user;
     }
 

@@ -100,14 +100,14 @@ $('document').ready(function () {
 
         e.preventDefault();
 
-        if (checkOnFieldsFullFill() && confimPass === password) {
-            checkLoginExist($login.val());
+        if (checkOnFieldsFullFill() && confimPass === password) { //если все поля нормальной длинны и пароли совпали
+            checkLoginExist($login.val()); //проверка на логин и мейл
             checkEmailExist($email.val());
 
             setTimeout(function () {
                 if (isLoginValide && isEmailValide) {
                     $.ajax({
-                        url: '/setUser',
+                        url: '/setUser', //запрос на регистрацию пользователя ->RESTController
                         data: {
                             login: login,
                             email: email,
@@ -142,14 +142,14 @@ $('document').ready(function () {
 
     function checkLoginExist(login) {
         $.ajax({
-            url: '/loginAlreadyExists',
+            url: '/loginAlreadyExists', //существование логина ->RESTController
             data: {login: login},
             method: 'POST',
             success: function (request) {
                 if (!request) {
                     isLoginValide = true;
                 } else {
-                    isLoginValide = false;
+                    isLoginValide = false; //вывод сообщения об ошибке
                     $login.addClass('invalid');
                     $loginError.css('display', 'block');
                     $loginError.html('Логин уже используется');
@@ -163,14 +163,14 @@ $('document').ready(function () {
 
     function checkEmailExist(email) {
         $.ajax({
-            url: '/emailAlreadyExists',
+            url: '/emailAlreadyExists', //существование почты ->RESTController
             data: {email: email},
             method: 'POST',
             success: function (request) {
                 if (!request) {
                     isEmailValide = true;
                 } else {
-                    isEmailValide = false;
+                    isEmailValide = false; //вывод сообщения об ошибке
                     $email.addClass('invalid');
                     $emailError.css('display', 'block');
                     $emailError.html('Email уже используется');

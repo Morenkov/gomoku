@@ -13,6 +13,8 @@ public class TUser extends NewUserDTO {
         setEmail(user.getEmail());
         setFirstName(user.getFirstName());
         setLastName(user.getLastName());
+        setWonGames(user.getWonGames());
+        setLostGames(user.getLostGames());
 
         this.token = tkn;
     }

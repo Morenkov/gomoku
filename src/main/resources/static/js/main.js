@@ -82,8 +82,27 @@ var mainApp = (function () {
     }
 
     function initialize() {
+        updateMe();
         showProfile(me);
         getFriends();
+    }
+
+    function updateMe() {
+        $.ajax({
+            url: "/getUser",
+            method: 'POST',
+            data: {id: me.id},
+            success: function (request) {
+                console.log(request);
+                if (request) {
+                    me = request;
+                    showProfile(me);
+                }
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });
     }
 
     return {

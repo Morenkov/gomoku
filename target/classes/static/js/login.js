@@ -30,17 +30,17 @@ $('#form').validate({
 });
 
 $('document').ready(function () {
-    var $email = $('#email'),
+    var $email = $('#email'), //считывание всех инпутов
         $password = $('#password'),
         $passError = $('#password-error'),
         $emailError = $('#email-error');
 
-    $email.on('focus', function (e) {
+    $email.on('focus', function (e) { //удаление выделения крассным при изменении поля
         $(this).removeClass('invalid');
         $emailError[0].innerHTML = '';
     });
 
-    $password.on('focus', function (e) {
+    $password.on('focus', function (e) { //удаление выделения крассным при изменении поля
         $(this).removeClass('invalid');
         $passError[0].innerHTML = '';
     });
@@ -50,47 +50,45 @@ $('document').ready(function () {
         e.preventDefault();
         //проверка, зареган ли такой пользователь
         $.ajax({
-            url: '/emailAlreadyExists',
+            url: '/emailAlreadyExists', //существование почты ->RESTController
             data: {email: a},
             method: 'POST',
             success: function (request) {
                 console.log(request);
                 if (request) {
                     $.ajax({
-                        url: '/authorization',
+                        url: '/authorization', //попытка авторизации пользователя ->RESTController
                         data: {login: $email.val(), password: $password.val()},
                         method: 'POST',
                         success: function (answer) {
-                            var $input = $('#token');
+                            var $input = $('#token'); //считывание поля для передачи в него токена
 
                             switch (answer) {
                                 case "Такого пользователя нет":
                                 case "Неверный пароль":
-                                    $password.addClass('invalid');
+                                    $password.addClass('invalid'); //сообщение об ошибке
                                     $passError.css('display', 'block');
                                     $passError.html(answer);
                                     break;
                                 default:
-                                    localStorage.setItem("user", JSON.stringify(answer));
-                                    $input.val(answer.token);
-                                    $('#form').submit();
+                                    localStorage.setItem("user", JSON.stringify(answer)); //сохранение юзера локально
+                                    $input.val(answer.token); //передача токена в поле
+                                    $('#form').submit(); //отправка формы для захода на сайт
                                     break;
                             }
                         },
                         error: function (error) {
                             console.log(error);
-                            alert('server error');
                         }
                     });
                 } else {
-                    $email.addClass('invalid');
+                    $email.addClass('invalid'); //сообщение об ошибке
                     $emailError.css('display', 'block');
                     $emailError.html('Некорректный email');
                 }
             },
             error: function (error) {
                 console.log(error);
-                alert('server error');
             }
         });
     });

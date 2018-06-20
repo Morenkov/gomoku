@@ -59,10 +59,8 @@ public class MappingController {
         return "Signup";
     }
 
-    //При выходе, удаляется токен для текущего юзера из бизнес-логики
-    @PostMapping("/logout")
-    public String logout(@RequestParam String token) {
-        bll.removeToken(token);
+    @GetMapping("/logout")
+    public String logout() {
         return "redirect:/signin";
     }
 }
